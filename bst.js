@@ -37,7 +37,17 @@ const Tree = (array) => {
     console.log(siftedArray);
     return { root: buildTree(siftedArray, 0, siftedArray.length-1) }
 }
-let array = [1, 2, 3, 4, 5, 6, 7];
-let x = sortArray(array);
-let y = removeDuplicates(x);
-console.log(y);
+let array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
+
+// print tree to console
+const prettyPrint = (node, prefix = '', isLeft = true) => {
+    if (node.right !== null) {
+      prettyPrint(node.right, `${prefix}${isLeft ? '│   ' : '    '}`, false);
+    }
+    console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`);
+    if (node.left !== null) {
+      prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
+    }
+  }
+let z = Tree(array);
+prettyPrint(z.root);
