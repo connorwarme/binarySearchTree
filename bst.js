@@ -64,8 +64,6 @@ const search = (root, value) => {
         return search(root.left, value);
     }
 }
-console.log(search(bst.root, 7));
-console.log(search(bst.root, 2));
 
 // check if value already exists in array
 // true means it can be added to array
@@ -80,10 +78,28 @@ const checkValue = (value) => {
         return false;
     }
 }
-console.log(checkValue(7));
-console.log(checkValue(2));
 
 // insert
+// run a check, if value already exists
+// if not, then run recursion to add it
 const insert = (root, value) => {
-
+    if (checkValue(value)) {
+        insertRec(root, value);
+    } else {
+        console.log('value already exists in tree');
+    }
 }
+const insertRec = (root, value) => {
+    if (root == null) {
+        root = NodeFactory(value);
+        return root;
+    }
+    if (root.data < value) {
+        root.right = insertRec(root.right, value);
+    } else {
+        root.left = insertRec(root.left, value);
+    }
+    return root;
+}
+insert(bst.root, 2);
+prettyPrint(bst.root);
