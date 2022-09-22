@@ -1,3 +1,4 @@
+let mainArray = [];
 const NodeFactory = (input) => {
     return {
         data: input || null,
@@ -34,7 +35,7 @@ const buildTree = (array, start, end) => {
 const Tree = (array) => {
     let sortedArray = sortArray(array);
     let siftedArray = removeDuplicates(sortedArray);
-    console.log(siftedArray);
+    mainArray = siftedArray;
     return { root: buildTree(siftedArray, 0, siftedArray.length-1) }
 }
 let array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
@@ -49,5 +50,40 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
       prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
     }
   }
-let z = Tree(array);
-prettyPrint(z.root);
+let bst = Tree(array);
+prettyPrint(bst.root);
+
+// search
+const search = (root, value) => {
+    if (root == null || root.data == value) {
+        return root;
+    }
+    if (root.data < value) {
+        return search(root.right, value);
+    } else {
+        return search(root.left, value);
+    }
+}
+console.log(search(bst.root, 7));
+console.log(search(bst.root, 2));
+
+// check if value already exists in array
+// true means it can be added to array
+// false means it's already present in array
+const checkValue = (value) => {
+    let check = mainArray.find(index => {
+        return index == value;
+    });
+    if (check === undefined) {
+        return true;
+    } else {
+        return false;
+    }
+}
+console.log(checkValue(7));
+console.log(checkValue(2));
+
+// insert
+const insert = (root, value) => {
+
+}
