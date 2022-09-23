@@ -219,3 +219,23 @@ const inorder = (root, funct = 'none') => {
     return inDepth;
 }
 console.log(inorder(bst.root));
+
+const postorderRec = (root, array, funct) => {
+    if (root == null) return root;
+    postorderRec(root.left, array, funct);
+    postorderRec(root.right, array, funct);
+    if (funct == 'none') {
+        array.push(root.data)
+    } else {
+        funct(root);
+    }
+    if (array.length > 0) {
+        return array;
+    }
+}
+const postorder = (root, funct = 'none') => {
+    const postorderArray = [];
+    const postDepth = postorderRec(root, postorderArray, funct);
+    return postDepth;
+}
+console.log(postorder(bst.root));
