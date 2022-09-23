@@ -179,11 +179,6 @@ levelOrder(bst.root, cb);
 console.log(levelOrder(bst.root));
 
 // depth-first traversal
-const preorder = (root, funct = 'none') => {
-    const preorderArray = [];
-    const pre = preorderRec(root, preorderArray, funct);
-    return pre;
-}
 const preorderRec = (root, array, funct) => {
     if (root == null) return root;
     if (funct == 'none') {
@@ -197,4 +192,30 @@ const preorderRec = (root, array, funct) => {
         return array;
     }
 }
+const preorder = (root, funct = 'none') => {
+    const preorderArray = [];
+    const preDepth = preorderRec(root, preorderArray, funct);
+    return preDepth;
+}
 console.log(preorder(bst.root, cb))
+
+const inorderRec = (root, array, funct) => {
+    if (root == null) return root;
+    inorderRec(root.left, array, funct);
+    if (funct == 'none') {
+        array.push(root.data)
+    } else {
+        funct(root);
+    }
+    inorderRec(root.right, array, funct);
+    if (array.length > 0) {
+        return array;
+    }
+}
+
+const inorder = (root, funct = 'none') => {
+    const inorderArray = [];
+    const inDepth = inorderRec(root, inorderArray, funct);
+    return inDepth;
+}
+console.log(inorder(bst.root));
