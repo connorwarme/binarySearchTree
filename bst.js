@@ -104,8 +104,9 @@ const insertRec = (root, value) => {
     }
     return root;
 }
-// insert(bst.root, 2);
-// prettyPrint(bst.root);
+insert(bst.root, 22);
+insert(bst.root, 24)
+prettyPrint(bst.root);
 
 // minimum value
 const min = (root) => {
@@ -175,8 +176,8 @@ function levelOrder(root, funct = 'none') {
 const cb = (input) => {
     console.log(input.data);
 }
-levelOrder(bst.root, cb);
-console.log(levelOrder(bst.root));
+// levelOrder(bst.root, cb);
+// console.log(levelOrder(bst.root));
 
 // depth-first traversal
 const preorderRec = (root, array, funct) => {
@@ -197,7 +198,7 @@ const preorder = (root, funct = 'none') => {
     const preDepth = preorderRec(root, preorderArray, funct);
     return preDepth;
 }
-console.log(preorder(bst.root, cb))
+// console.log(preorder(bst.root, cb))
 
 const inorderRec = (root, array, funct) => {
     if (root == null) return root;
@@ -218,7 +219,7 @@ const inorder = (root, funct = 'none') => {
     const inDepth = inorderRec(root, inorderArray, funct);
     return inDepth;
 }
-console.log(inorder(bst.root));
+// console.log(inorder(bst.root));
 
 const postorderRec = (root, array, funct) => {
     if (root == null) return root;
@@ -238,7 +239,7 @@ const postorder = (root, funct = 'none') => {
     const postDepth = postorderRec(root, postorderArray, funct);
     return postDepth;
 }
-console.log(postorder(bst.root));
+// console.log(postorder(bst.root));
 
 // height & depth
 const height = (root) => {
@@ -267,4 +268,16 @@ const depth = (root, node) => {
     }
     return count;
 }
-console.log(depth(bst.root, bst.root.left.right.right));
+// console.log(depth(bst.root, bst.root.left.right.right));
+
+//
+const isBalanced = (root) => {
+    const left = height(root.left);
+    const right = height(root.right);
+    if ((Math.max(left, right) - Math.min(left, right)) > 1) {
+        return false;
+    } else {
+        return true;
+    }
+}
+console.log(isBalanced(bst.root));
