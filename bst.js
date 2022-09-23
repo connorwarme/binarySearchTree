@@ -239,3 +239,32 @@ const postorder = (root, funct = 'none') => {
     return postDepth;
 }
 console.log(postorder(bst.root));
+
+// height & depth
+const height = (root) => {
+    if (root == null) {
+        return -1;
+    }
+    const leftH = height(root.left);
+    const rightH = height(root.right);
+    return (Math.max(leftH, rightH)) + 1;
+}
+const depth = (root, node) => {
+    if (root == null) {
+        return -1;
+    }
+    let count = -1;
+    if (root.data == node.data) {
+        return count + 1;
+    }
+    count = depth(root.left, node);
+    if (count >= 0) {
+        return count + 1;
+    }
+    count = depth(root.right, node);
+    if (count >= 0) {
+        return count + 1;
+    }
+    return count;
+}
+console.log(depth(bst.root, bst.root.left.right.right));
