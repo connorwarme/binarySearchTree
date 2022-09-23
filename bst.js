@@ -37,7 +37,7 @@ const Tree = (array) => {
     mainArray = siftedArray;
     return { root: buildTree(siftedArray, 0, siftedArray.length-1) }
 }
-let array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
+let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
 // print tree to console
 const prettyPrint = (node, prefix = '', isLeft = true) => {
@@ -165,7 +165,7 @@ function levelOrder(root, funct = 'none') {
         if (funct != 'none') {
             funct(pop);
         } else {
-            array.push(pop);
+            array.push(pop.data);
         }  
     }
     if (funct == 'none') {
@@ -177,3 +177,24 @@ const cb = (input) => {
 }
 levelOrder(bst.root, cb);
 console.log(levelOrder(bst.root));
+
+// depth-first traversal
+const preorder = (root, funct = 'none') => {
+    const preorderArray = [];
+    const pre = preorderRec(root, preorderArray, funct);
+    return pre;
+}
+const preorderRec = (root, array, funct) => {
+    if (root == null) return root;
+    if (funct == 'none') {
+        array.push(root.data);
+    } else {
+        funct(root);
+    }
+    preorderRec(root.left, array, funct);
+    preorderRec(root.right, array, funct);
+    if (array.length > 0) {
+        return array;
+    }
+}
+console.log(preorder(bst.root, cb))
