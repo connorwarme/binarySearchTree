@@ -281,3 +281,10 @@ const isBalanced = (root) => {
     }
 }
 console.log(isBalanced(bst.root));
+
+const rebalance = (root) => {
+    const array = inorder(root);
+    return Tree(array);
+}
+const balanced = rebalance(bst.root);
+prettyPrint(balanced.root)
