@@ -49,8 +49,8 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
       prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
     }
   }
-let bst = Tree(array);
-prettyPrint(bst.root);
+// let bst = Tree(array);
+// prettyPrint(bst.root);
 
 // search
 const search = (root, value) => {
@@ -104,9 +104,9 @@ const insertRec = (root, value) => {
     }
     return root;
 }
-insert(bst.root, 22);
-insert(bst.root, 24)
-prettyPrint(bst.root);
+// insert(bst.root, 22);
+// insert(bst.root, 24)
+// prettyPrint(bst.root);
 
 // minimum value
 const min = (root) => {
@@ -280,11 +280,42 @@ const isBalanced = (root) => {
         return true;
     }
 }
-console.log(isBalanced(bst.root));
+// console.log(isBalanced(bst.root));
 
 const rebalance = (root) => {
     const array = inorder(root);
     return Tree(array);
 }
-const balanced = rebalance(bst.root);
+
+const createNumber = () => {
+    return Math.floor(Math.random() * 50);
+}
+const createArray = () => {
+    let array = [];
+    let number = createNumber();
+    for (let i=0; i<number; i++) {
+        array.push(createNumber());
+    }
+    return array;
+}
+
+// "driver script"
+
+const pine = Tree(createArray());
+console.log(isBalanced(pine.root))
+console.log(levelOrder(pine.root));
+console.log(inorder(pine.root));
+console.log(preorder(pine.root));
+console.log(postorder(pine.root));
+insert(pine.root, 55);
+insert(pine.root, 66);
+insert(pine.root, 69);
+insert(pine.root, 74);
+console.log(isBalanced(pine.root));
+const balanced = rebalance(pine.root);
 prettyPrint(balanced.root)
+console.log(isBalanced(balanced));
+console.log(levelOrder(balanced.root));
+console.log(inorder(balanced.root));
+console.log(preorder(balanced.root));
+console.log(postorder(balanced.root));
